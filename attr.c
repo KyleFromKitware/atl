@@ -13,8 +13,9 @@
 #    ifdef HAVE_MALLOC_H
 #      include <malloc.h>
 #    endif
-#    include <unix_defs.h>
 #  endif
+
+#include <unix_defs.h>
 
 #undef NDEBUG
 #include "assert.h"
