@@ -20,6 +20,7 @@
 #  endif
 #  include <stdio.h>
 #  include <string.h>
+#  include <stddef.h>
 
 #include "tclHash.h"
 
@@ -40,7 +41,7 @@
  */
 
 #define RANDOM_INDEX(tablePtr, i) \
-    (((((long) (i))*1103515245) >> (tablePtr)->downShift) & (tablePtr)->mask)
+    (((((ptrdiff_t) (i))*1103515245) >> (tablePtr)->downShift) & (tablePtr)->mask)
 
 /* 
  * Procedure prototypes for static procedures in this file:

@@ -12,5 +12,3 @@
 #include <malloc.h>
 #endif
 
-extern pid_t getpid();
-extern char *getlogin();
