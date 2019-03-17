@@ -14,6 +14,7 @@
 
 #ifdef _MSC_VER
 #define strdup(s) _strdup(s)
+#define putenv(s) _putenv(s)
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 

@@ -13,6 +13,7 @@
 #endif
 #include <stdio.h>
 #include "atl.h"
+#include "unix_defs.h"
 
 int
 main()
@@ -58,8 +59,15 @@ main()
     urquel_atom = attr_atom_from_string("Pilsner Urquel");
     tecate_atom = attr_atom_from_string("Tecate");
 
+#ifdef _MSC_VER
+#pragma warning (push)
+#pragma warning (disable:4312) // warning C4244: '=' : smaller to greater size
+#endif //_MSC_VER
     add_attr(list, ip_atom, Attr_Int4, (attr_value) 
 	     (((unsigned int)130<<24) + ((unsigned int) 207<<16) +((unsigned int)5 << 8) + 68));
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif //_MSC_VER
     add_attr(list, fosters_atom, Attr_Int4, (attr_value) 2);
     add_attr(list, red_stripe_atom, Attr_String, (attr_value) strdup("Uno mas"));
     add_double_attr(list, urquel_atom, 3.14159);

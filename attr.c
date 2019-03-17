@@ -1223,6 +1223,10 @@ get_int_attr(attr_list l, atom_t attr_id, int *valp)
 	*valp = v.u.i;
 	break;
     case Attr_Int8:
+#ifdef _MSC_VER
+#pragma warning (push)
+#pragma warning (disable:4244) // warning C4244: '=' : conversion from 'int' to 'uint16_t', possible loss of data
+#endif //_MSC_VER
 	if (sizeof(long) == 8) *valp = v.u.l;
 	*valp = v.u.i;
 	break;
@@ -1251,6 +1255,10 @@ get_long_attr(attr_list l, atom_t attr_id, long *valp)
     attr_union v;
     int ret = query_pattr(l, attr_id, &t, &v);
     if (ret == 0) return 0;
+#ifdef _MSC_VER
+#pragma warning (push)
+#pragma warning (disable:4244) // warning C4244: '=' : conversion from 'int' to 'uint16_t', possible loss of data
+#endif //_MSC_VER
     switch(t) {
     case Attr_Int4:
 	if (sizeof(int) == 4) *valp = v.u.i;
@@ -1263,6 +1271,9 @@ get_long_attr(attr_list l, atom_t attr_id, long *valp)
 	    *valp = v.u.i;
 	}
 	break;
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif //_MSC_VER
     case Attr_Float16:
 	if (sizeof(double) == 16) *valp = (long)v.u.d;
 	if (sizeof(float) == 16) *valp = (long)v.u.f;
